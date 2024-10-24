@@ -1,21 +1,20 @@
 public class Q2 {
-    public static void generatePascalTriangle(int n) {
-        //write your code here
-        for (int i=0;i<n;i++){
-            for (int j = 0; j < n-i; j++) {
-                System.out.print(" ");
-            }
-            int num =1;
-            for(int j=0;j<=i;j++){
-                System.out.print(num+" ");
-                num =num *(i-j)/(j+1);
-            }
-            System.out.println();
+    public static int climbStairs(int n) {
+    	if(n<=3) {
+        	return n;
         }
+        int a=3;
+        int b=2;
+        for(int i=0;i<n-3;i++) {
+        	a=a+b;
+        	b=a-b;
+        }
+        return a;
+        
+        
     }
-
     public static void main(String[] args) {
-        int n = 5;
-        generatePascalTriangle(n);
+        int n = 6;  
+        System.out.println("Number of ways to climb to the top:" +climbStairs(n));
     }
 }
