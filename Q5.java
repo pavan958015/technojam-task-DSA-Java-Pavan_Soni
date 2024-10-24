@@ -1,3 +1,5 @@
+import java.util.List;
+
 class ListNode {
     int val;
     ListNode next;
@@ -10,27 +12,30 @@ class ListNode {
 public class Q5
  {
     public static ListNode detectCycle(ListNode head) {
-    	if(head==null) {
+        //write your code here
+    	if(head==null || head.next==null ) {
     		return null;
     	}
-        ListNode slow=head;
-        ListNode fast=head;
-        while(fast!=null && fast.next!=null) {
-        	slow=slow.next;
-        	fast=fast.next.next;
-        	if(slow==fast) {
-        		fast=head;
-        		
-        		while(slow!=fast) {
-        			slow=slow.next;
-        			fast=fast.next;
-        		}
-        		return slow;
-        	}
-        }
-        return null;
-        
+    	ListNode fast=head;
+    	ListNode slow=head;
+    	
+    	while(fast!=null && fast.next!=null) {
+    		slow=slow.next;
+    		fast=fast.next.next;
+    		if(slow==fast) {
+    			break;
+    		}
+    	}
+    	if(fast==null && fast.next==null) return null;
+    	
+    	fast=head;
+    	while(fast!=slow) {
+    		fast=fast.next;
+    		slow=slow.next;
+    	}
+    	return fast;
     }
+    
 
     public static void main(String[] args) {
         ListNode head = new ListNode(3);
